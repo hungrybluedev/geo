@@ -1,6 +1,12 @@
 module geometry
 
 pub fn generate_square(options ShapeOptions) []string {
+
+	// Check if the size is invalid
+	if options.size <= 0 {
+		return []
+	}
+
 	single_line := options.symbol.repeat(options.size)
 	lines := []string{len: options.size, init: single_line}
 	return lines
