@@ -3,12 +3,16 @@ module main
 import geometry
 
 fn main() {
-	functions := [
-		geometry.generate_triangle,
-		geometry.generate_square,
+	println(geometry.version)
+
+	shapes := [
+		geometry.GeometricShape.left_triangle,
+		geometry.GeometricShape.right_triangle,
+		geometry.GeometricShape.square,
+		geometry.GeometricShape.diamond,
 	]
-	for function in functions {
-		lines := function(size: 5)
+	for shape in shapes {
+		lines := geometry.generate_shape(shape, size: 5)
 		println(lines.join_lines())
 
 		println('\n\n')
