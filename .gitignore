@@ -1,0 +1,9 @@
+# Binaries for programs and plugins
+main
+geo
+*.exe
+*.exe~
+*.so
+*.dylib
+*.dll
+vls.log
