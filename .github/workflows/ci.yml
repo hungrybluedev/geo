@@ -10,12 +10,12 @@ jobs:
   build:
     strategy:
       matrix:
-        os: 
+        os:
           - name: ubuntu-latest
             vexe: v
           - name: macos-latest
             vexe: v
-          - name: windows-latest]
+          - name: windows-latest
             vexe: v.exe
     runs-on: ${{ matrix.os.name }}
 
@@ -30,26 +30,27 @@ jobs:
         run: |
           .\make.bat
           .\v.exe symlink
-      
+
       - name: Build V on Ubuntu, MacOS
         if: ${{ matrix.os.name != 'windows-latest' }}
         run: |
           make
           sudo ./v symlink
 
-      - name: Checkout Geo
+      - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v2
         with:
-          path: geo
+          path: ${{ github.event.repository.name }}
 
       - name: Check if code is formatted
         run: |
-          ${{ matrix.os.vexe }} fmt -verify geo
+          ${{ matrix.os.vexe }} fmt -diff ${{ github.event.repository.name }}
+          ${{ matrix.os.vexe }} fmt -verify ${{ github.event.repository.name }}
 
-      - name: Build Geo
+      - name: Build ${{ github.event.repository.name }}
         run: |
-          ${{ matrix.os.vexe }} -prod geo
+          ${{ matrix.os.vexe }} -prod ${{ github.event.repository.name }}
 
       - name: Run Tests
         run: |
-          ${{ matrix.os.vexe }} test geo
+          ${{ matrix.os.vexe }} test ${{ github.event.repository.name }}
