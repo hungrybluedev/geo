@@ -1,8 +1,7 @@
 module geometry
 
 pub fn generate_square(options ShapeOptions) []string {
-	// Check if the size is invalid
-	if options.size <= 0 {
+	if !options.are_valid() {
 		return []
 	}
 
@@ -12,18 +11,22 @@ pub fn generate_square(options ShapeOptions) []string {
 }
 
 pub fn generate_diamond(options ShapeOptions) []string {
+	if !options.are_valid() {
+		return []
+	}
+
 	mut lines := []string{cap: options.size * 2 - 1}
 
 	// top half
 	for i in 0 .. options.size {
-		mut current_line := []byte{cap: options.size + i + 1}
+		mut current_line := []rune{cap: options.size + i + 1}
 		for _ in 0 .. (options.size - i - 1) {
 			current_line << ` `
 		}
 		for _ in 0 .. (2 * i + 1) {
 			current_line << options.symbol
 		}
-		lines << current_line.bytestr()
+		lines << current_line.string()
 	}
 
 	// bottom half

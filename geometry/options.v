@@ -10,7 +10,11 @@ pub enum GeometricShape {
 
 pub struct ShapeOptions {
 	size   int
-	symbol byte = `*`
+	symbol rune = `*`
+}
+
+pub fn (options ShapeOptions) are_valid() bool {
+	return options.size > 0 && options.symbol != 0
 }
 
 pub const (
