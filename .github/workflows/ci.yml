@@ -16,10 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Clone & Build v
-        run: |
-          git clone --depth=2 https://github.com/vlang/v.git v/
-          (cd v; make -j4)
+      - name: Clone and build current V
+        run: git clone https://github.com/vlang/v.git --depth=1 && cd v && make -j4
       
       - name: Check formatting
         run: ./v/v fmt -c
