@@ -22,8 +22,8 @@ jobs:
       - name: Build V on Windows
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
-          make.bat
-          ./v symlink
+          .\make.bat
+          .\v.exe symlink
       
       - name: Build V on Ubuntu, MacOS
         if: ${{ matrix.os != 'windows-latest' }}
@@ -38,7 +38,7 @@ jobs:
 
       - name: Check if code is formatted
         run: |
-          v fmt -c geo
+          v fmt -verify geo
 
       - name: Build Geo
         run: |
