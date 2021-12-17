@@ -2,25 +2,34 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Latest V
+        uses: actions/checkout@v2
+        with:
+          repository: vlang/v
 
-      - name: Clone and build current V
-        run: git clone https://github.com/vlang/v.git --depth=1 && cd v && make -j4
-      
-      - name: Check formatting
-        run: ./v/v fmt -c
+      - name: Build V
+        run: |
+          make
+          sudo ./v symlink
 
-      - name: Run all unit tests
-        run: ./v/v test .
+      - name: Checkout Geo
+        uses: actions/checkout@v2
+        with:
+          path: geo
+
+      - name: Build Geo
+        run: |
+          v -prod geo
+
+      - name: Run Tests
+        run: |
+          v test geo
