@@ -35,12 +35,17 @@ fn main() {
 
 	shape_options := geometry.ShapeOptions{
 		size: fp.int('size', `z`, 5, 'The size parameter for the shapes.')
-		symbol: fp.string('symbol', `m`, '*', 'The symbol to use for the geometry.').bytes()[0]
+		symbol: fp.string('symbol', `m`, '*', 'The symbol to use for the geometry.').runes()[0]
 	}
 
 	if show_help {
 		println(fp.usage())
 		exit(0)
+	}
+
+	if !shape_options.are_valid() {
+		println('Size parameter must be positive.')
+		exit(1)
 	}
 
 	if shape !in geometry.allowed_shapes && shape != 'none' {
