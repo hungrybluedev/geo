@@ -30,7 +30,7 @@ pub fn generate_diamond(options ShapeOptions) []string {
 	}
 
 	// bottom half
-	for i := options.size - 1; i >= 0; i-- {
+	for i := options.size - 2; i >= 0; i-- {
 		lines << lines[i]
 	}
 	return lines
