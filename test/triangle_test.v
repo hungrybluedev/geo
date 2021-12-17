@@ -49,6 +49,24 @@ fn test_generate_left_triangle_invalid() {
 	assert shape.len == 0
 }
 
+fn test_generate_left_triangle_unicode_1() {
+	opts := geometry.ShapeOptions{
+		size: 3
+		symbol: `🔼`
+	}
+	shape := geometry.generate_left_triangle(opts)
+	assert shape == ['🔼', '🔼🔼', '🔼🔼🔼']
+}
+
+fn test_generate_left_triangle_unicode_2() {
+	opts := geometry.ShapeOptions{
+		size: 2
+		symbol: `ॐ`
+	}
+	shape := geometry.generate_left_triangle(opts)
+	assert shape == ['ॐ', 'ॐॐ']
+}
+
 // -----------------------------------------------------------------------------
 // Right triangle
 
@@ -87,6 +105,24 @@ fn test_generate_right_triangle_invalid() {
 	}
 	shape := geometry.generate_right_triangle(opts)
 	assert shape.len == 0
+}
+
+fn test_generate_right_triangle_unicode_1() {
+	opts := geometry.ShapeOptions{
+		size: 3
+		symbol: `🔼`
+	}
+	shape := geometry.generate_right_triangle(opts)
+	assert shape == ['  🔼', ' 🔼🔼', '🔼🔼🔼']
+}
+
+fn test_generate_right_triangle_unicode_2() {
+	opts := geometry.ShapeOptions{
+		size: 2
+		symbol: `🀃`
+	}
+	shape := geometry.generate_right_triangle(opts)
+	assert shape == [' 🀃', '🀃🀃']
 }
 
 // -----------------------------------------------------------------------------
@@ -128,4 +164,22 @@ fn test_generate_pyramid_invalid() {
 	}
 	shape := geometry.generate_pyramid(opts)
 	assert shape.len == 0
+}
+
+fn test_generate_pyramid_unicode_1() {
+	opts := geometry.ShapeOptions{
+		size: 3
+		symbol: `🔼`
+	}
+	shape := geometry.generate_pyramid(opts)
+	assert shape == ['  🔼', ' 🔼🔼🔼', '🔼🔼🔼🔼🔼']
+}
+
+fn test_generate_pyramid_unicode_2() {
+	opts := geometry.ShapeOptions{
+		size: 2
+		symbol: `🀃`
+	}
+	shape := geometry.generate_pyramid(opts)
+	assert shape == [' 🀃', '🀃🀃🀃']
 }

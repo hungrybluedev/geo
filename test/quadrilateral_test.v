@@ -48,6 +48,24 @@ fn test_generate_square_invalid() {
 	assert shape.len == 0
 }
 
+fn test_generate_square_unicode_1() {
+	opts := geometry.ShapeOptions{
+		size: 3
+		symbol: `🔼`
+	}
+	shape := geometry.generate_square(opts)
+	assert shape == ['🔼🔼🔼', '🔼🔼🔼', '🔼🔼🔼']
+}
+
+fn test_generate_square_unicode_2() {
+	opts := geometry.ShapeOptions{
+		size: 2
+		symbol: `🀃`
+	}
+	shape := geometry.generate_square(opts)
+	assert shape == ['🀃🀃', '🀃🀃']
+}
+
 // -----------------------------------------------------------------------------
 // Diamond
 
@@ -57,7 +75,7 @@ fn test_generate_diamond_big_7() {
 		size: 5
 	}
 	shape := geometry.generate_diamond(opts)
-	assert shape == ['    *', '   ***', '  *****', ' *******', '*********', '*********', ' *******',
+	assert shape == ['    *', '   ***', '  *****', ' *******', '*********', ' *******',
 		'  *****', '   ***', '    *']
 }
 
@@ -67,7 +85,7 @@ fn test_generate_diamond_small_2() {
 		size: 2
 	}
 	shape := geometry.generate_diamond(opts)
-	assert shape == [' *', '***', '***', ' *']
+	assert shape == [' *', '***', ' *']
 }
 
 // Test to generate a small diamond of size 2 with a custom symbol
@@ -77,7 +95,7 @@ fn test_generate_diamond_small_2_custom() {
 		symbol: `x`
 	}
 	shape := geometry.generate_diamond(opts)
-	assert shape == [' x', 'xxx', 'xxx', ' x']
+	assert shape == [' x', 'xxx', ' x']
 }
 
 // Invalid diamond
@@ -87,4 +105,22 @@ fn test_generate_diamond_invalid() {
 	}
 	shape := geometry.generate_diamond(opts)
 	assert shape.len == 0
+}
+
+fn test_generate_diamond_unicode_1() {
+	opts := geometry.ShapeOptions{
+		size: 3
+		symbol: `🔼`
+	}
+	shape := geometry.generate_diamond(opts)
+	assert shape == ['  🔼', ' 🔼🔼🔼', '🔼🔼🔼🔼🔼', ' 🔼🔼🔼', '  🔼']
+}
+
+fn test_generate_diamond_unicode_2() {
+	opts := geometry.ShapeOptions{
+		size: 2
+		symbol: `শ`
+	}
+	shape := geometry.generate_diamond(opts)
+	assert shape == [' শ', 'শশশ', ' শ']
 }
