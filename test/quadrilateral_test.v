@@ -75,8 +75,8 @@ fn test_generate_diamond_big_7() {
 		size: 5
 	}
 	shape := geometry.generate_diamond(opts)
-	assert shape == ['    *', '   ***', '  *****', ' *******', '*********', ' *******',
-		'  *****', '   ***', '    *']
+	assert shape == ['    *', '   ***', '  *****', ' *******', '*********', ' *******', '  *****',
+		'   ***', '    *']
 }
 
 // Test to generate a small diamond of size 2 without custom symbol
