@@ -18,7 +18,7 @@ jobs:
 
       - name: Clone & Build v
         run: |
-          git clone --depth=1 https://github.com/vlang/v v/
+          git clone --depth=2 https://github.com/vlang/v.git v/
           (cd v; make -j4)
       
       - name: Check formatting
