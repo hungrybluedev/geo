@@ -4,22 +4,6 @@ import os
 import flag
 import geometry
 
-// get_shape_input continuously asks the user for a shape until the user enters a valid shape
-fn get_shape_input() geometry.GeometricShape {
-	for true {
-		input_string := os.input_opt('Enter a shape: ') or { 'none' }
-
-		if input_string == 'none' || input_string !in geometry.allowed_shapes {
-			println('Invalid shape: $input_string')
-			println('Available options are: ${geometry.allowed_shapes.join(', ')}')
-			continue
-		}
-
-		return geometry.shape_map[input_string]
-	}
-	return geometry.GeometricShape.left_triangle
-}
-
 fn main() {
 	mut fp := flag.new_flag_parser(os.args)
 
@@ -58,4 +42,20 @@ fn main() {
 
 	lines := geometry.generate_shape(shape_enum, shape_options)
 	println(lines.join_lines())
+}
+
+// get_shape_input continuously asks the user for a shape until the user enters a valid shape
+fn get_shape_input() geometry.GeometricShape {
+	for true {
+		input_string := os.input_opt('Enter a shape: ') or { 'none' }
+
+		if input_string == 'none' || input_string !in geometry.allowed_shapes {
+			println('Invalid shape: $input_string')
+			println('Available options are: ${geometry.allowed_shapes.join(', ')}')
+			continue
+		}
+
+		return geometry.shape_map[input_string]
+	}
+	return geometry.GeometricShape.left_triangle
 }
