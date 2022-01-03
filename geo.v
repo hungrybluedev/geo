@@ -17,17 +17,15 @@ fn main() {
 	mut shape := fp.string('shape', `p`, 'none', 'The shape to use for the geometry.' +
 		'\n                            Allowed shapes are: ${geometry.allowed_shapes.join(', ')}')
 
-	shape_options := geometry.ShapeOptions{
-		size: fp.int('size', `z`, 5, 'The size parameter for the shapes.')
-		symbol: fp.string('symbol', `m`, '*', 'The symbol to use for the geometry.').runes()[0]
-	}
+	size := fp.int('size', `z`, 5, 'The size parameter for the shapes.')
+	symbol := fp.string('symbol', `m`, '*', 'The symbol to use for the geometry.').runes()[0]
 
 	if show_help {
 		println(fp.usage())
 		exit(0)
 	}
 
-	if !shape_options.are_valid() {
+	if size <= 0 {
 		println('Size parameter must be positive.')
 		exit(1)
 	}
@@ -38,14 +36,14 @@ fn main() {
 		exit(1)
 	}
 
-	shape_enum := if shape == 'none' { get_shape_input() } else { geometry.shape_map[shape] }
+	shape_kind := if shape == 'none' { get_shape_input() } else { geometry.shape_map[shape] }
 
-	lines := geometry.generate_shape(shape_enum, shape_options)
+	lines := geometry.generate_shape(kind: shape_kind, size: size, symbol: symbol)
 	println(lines.join_lines())
 }
 
 // get_shape_input continuously asks the user for a shape until the user enters a valid shape
-fn get_shape_input() geometry.GeometricShape {
+fn get_shape_input() geometry.GeometricShapeKind {
 	for true {
 		input_string := os.input_opt('Enter a shape: ') or { 'none' }
 
@@ -57,5 +55,5 @@ fn get_shape_input() geometry.GeometricShape {
 
 		return geometry.shape_map[input_string]
 	}
-	return geometry.GeometricShape.left_triangle
+	return geometry.GeometricShapeKind.left_triangle
 }

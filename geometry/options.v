@@ -1,6 +1,6 @@
 module geometry
 
-pub enum GeometricShape {
+pub enum GeometricShapeKind {
 	left_triangle
 	right_triangle
 	pyramid
@@ -9,6 +9,7 @@ pub enum GeometricShape {
 }
 
 pub struct ShapeOptions {
+	kind   GeometricShapeKind
 	size   int
 	symbol rune = `*`
 }
@@ -19,17 +20,17 @@ pub fn (options ShapeOptions) are_valid() bool {
 
 pub const (
 	shape_map = {
-		'left-triangle':  GeometricShape.left_triangle
-		'right-triangle': GeometricShape.right_triangle
-		'pyramid':        GeometricShape.pyramid
-		'square':         GeometricShape.square
-		'diamond':        GeometricShape.diamond
+		'left-triangle':  GeometricShapeKind.left_triangle
+		'right-triangle': GeometricShapeKind.right_triangle
+		'pyramid':        GeometricShapeKind.pyramid
+		'square':         GeometricShapeKind.square
+		'diamond':        GeometricShapeKind.diamond
 	}
 	allowed_shapes = shape_map.keys()
 )
 
-pub fn generate_shape(shape GeometricShape, options ShapeOptions) []string {
-	return match shape {
+pub fn generate_shape(options ShapeOptions) []string {
+	return match options.kind {
 		.left_triangle { generate_left_triangle(options) }
 		.right_triangle { generate_right_triangle(options) }
 		.pyramid { generate_pyramid(options) }
