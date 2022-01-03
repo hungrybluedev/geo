@@ -16,6 +16,7 @@ fn main() {
 
 	mut shape := fp.string('shape', `p`, 'none', 'The shape to use for the geometry.' +
 		'\n                            Allowed shapes are: ${geometry.allowed_shapes.join(', ')}')
+	shape = shape.to_lower()
 
 	size := fp.int('size', `z`, 5, 'The size parameter for the shapes.')
 	symbol := fp.string('symbol', `m`, '*', 'The symbol to use for the geometry.').runes()[0]
@@ -45,7 +46,7 @@ fn main() {
 // get_shape_input continuously asks the user for a shape until the user enters a valid shape
 fn get_shape_input() geometry.GeometricShapeKind {
 	for true {
-		input_string := os.input_opt('Enter a shape: ') or { 'none' }
+		input_string := (os.input_opt('Enter a shape: ') or { 'none' }).to_lower()
 
 		if input_string == 'none' || input_string !in geometry.allowed_shapes {
 			println('Invalid shape: $input_string')
