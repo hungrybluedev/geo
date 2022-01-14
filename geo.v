@@ -12,8 +12,6 @@ fn main() {
 	fp.description(geometry.description)
 	fp.skip_executable()
 
-	show_help := fp.bool('help', `h`, false, 'Show this help text.')
-
 	shape := fp.string('shape', `p`, 'none', 'The shape to use for the geometry.' +
 		'\n                            Allowed shapes are: ${geometry.allowed_shapes.join(', ')}').to_lower()
 
@@ -24,11 +22,6 @@ fn main() {
 
 	if additional_args.len > 0 {
 		println('Unprocessed arguments:\n$additional_args.join_lines()')
-	}
-
-	if show_help {
-		println(fp.usage())
-		exit(0)
 	}
 
 	if size <= 0 {
