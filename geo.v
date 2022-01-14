@@ -16,7 +16,9 @@ fn main() {
 		'\n                            Allowed shapes are: ${geometry.allowed_shapes.join(', ')}').to_lower()
 
 	size := fp.int('size', `z`, 5, 'The size parameter for the shapes.')
-	symbol := fp.string('symbol', `m`, '*', 'The symbol to use for the geometry.').runes()[0]
+	symbol := fp.string('symbol', `m`, '*', 'The symbol to use for the geometry.').runes()[0] or {
+		`*`
+	}
 
 	additional_args := fp.finalize() ?
 
