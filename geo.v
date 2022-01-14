@@ -20,6 +20,12 @@ fn main() {
 	size := fp.int('size', `z`, 5, 'The size parameter for the shapes.')
 	symbol := fp.string('symbol', `m`, '*', 'The symbol to use for the geometry.').runes()[0]
 
+	additional_args := fp.finalize() ?
+
+	if additional_args.len > 0 {
+		println('Unprocessed arguments:\n$additional_args.join_lines()')
+	}
+
 	if show_help {
 		println(fp.usage())
 		exit(0)
