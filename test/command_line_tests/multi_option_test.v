@@ -81,7 +81,7 @@ fn test_all_options() {
 		result := os.execute_or_panic('${@VEXE} run . --shape $case.shape --size $case.size --symbol "$case.symbol"')
 
 		assert result.exit_code == 0
-		assert result.output == case.output
+		assert result.output.replace('\r', '') == case.output
 	}
 }
 
@@ -90,6 +90,6 @@ fn test_shapes_only() {
 		result := os.execute_or_panic('${@VEXE} run . --shape $case.shape')
 
 		assert result.exit_code == 0
-		assert result.output == case.output
+		assert result.output.replace('\r', '') == case.output
 	}
 }
