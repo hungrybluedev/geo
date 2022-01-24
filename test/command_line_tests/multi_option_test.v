@@ -15,63 +15,33 @@ const (
 			shape: 'square'
 			size: 5
 			symbol: '|'
-			output: '|||||
-|||||
-|||||
-|||||
-|||||
-'
+			output: '|||||\n|||||\n|||||\n|||||\n|||||\n'
 		},
 		RunConfig{
 			shape: 'pyramid'
 			size: 3
 			symbol: '^'
-			output: '  ^
- ^^^
-^^^^^
-'
+			output: '  ^\n ^^^\n^^^^^\n'
 		},
 		RunConfig{
 			shape: 'diamond'
 			size: 4
 			symbol: '*'
-			output: '   *
-  ***
- *****
-*******
- *****
-  ***
-   *
-'
+			output: '   *\n  ***\n *****\n*******\n *****\n  ***\n   *\n'
 		},
 	]
 	shape_only_test_cases = [
 		RunConfig{
 			shape: 'square'
-			output: '*****
-*****
-*****
-*****
-*****
-'
+			output: '*****\n*****\n*****\n*****\n*****\n'
 		},
 		RunConfig{
 			shape: 'pyramid'
-			output: '    *
-   ***
-  *****
- *******
-*********
-'
+			output: '    *\n   ***\n  *****\n *******\n*********\n'
 		},
 		RunConfig{
 			shape: 'left-triangle'
-			output: '*
-**
-***
-****
-*****
-'
+			output: '*\n**\n***\n****\n*****\n'
 		},
 	]
 )
