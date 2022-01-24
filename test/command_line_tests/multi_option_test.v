@@ -46,12 +46,16 @@ const (
 	]
 )
 
+fn split_into_lines(output string) []string {
+	return output.split_any('\n\r').filter(it != '')
+}
+
 fn test_all_options() {
 	for case in geometry_tests.all_options_test_cases {
 		result := os.execute_or_panic('${@VEXE} run . --shape $case.shape --size $case.size --symbol "$case.symbol"')
 
 		assert result.exit_code == 0
-		assert result.output.split_any('\n\r') == case.output.split_any('\n\r')
+		assert split_into_lines(result.output) == split_into_lines(case.output)
 	}
 }
 
@@ -60,6 +64,6 @@ fn test_shapes_only() {
 		result := os.execute_or_panic('${@VEXE} run . --shape $case.shape')
 
 		assert result.exit_code == 0
-		assert result.output.split_any('\n\r') == case.output.split_any('\n\r')
+		assert split_into_lines(result.output) == split_into_lines(case.output)
 	}
 }
