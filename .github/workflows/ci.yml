@@ -16,7 +16,7 @@ jobs:
           - name: macos-latest
             vexe: v
           - name: windows-latest
-            vexe: .\v.exe
+            vexe: v.exe
     runs-on: ${{ matrix.os.name }}
 
     steps:
@@ -29,7 +29,8 @@ jobs:
         if: ${{ matrix.os.name == 'windows-latest' }}
         run: |
           .\make.bat
-          .\v symlink
+          .\v.exe symlink
+          . $profile
 
       - name: Build V on Ubuntu, MacOS
         if: ${{ matrix.os.name != 'windows-latest' }}
