@@ -16,7 +16,7 @@ jobs:
           - name: macos-latest
             vexe: v
           - name: windows-latest
-            vexe: v.exe
+            vexe: .\v.exe
     runs-on: ${{ matrix.os.name }}
 
     steps:
