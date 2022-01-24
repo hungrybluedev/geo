@@ -52,4 +52,5 @@ jobs:
 
       - name: Run Tests
         run: |
-          ${{ matrix.os.vexe }} test ${{ github.event.repository.name }}
+          cd ${{ github.event.repository.name }}
+          ${{ matrix.os.vexe }} test .
