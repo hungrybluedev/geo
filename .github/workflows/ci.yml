@@ -29,6 +29,7 @@ jobs:
         if: ${{ matrix.os.name == 'windows-latest' }}
         run: |
           .\make.bat
+          .\v symlink
 
       - name: Build V on Ubuntu, MacOS
         if: ${{ matrix.os.name != 'windows-latest' }}
