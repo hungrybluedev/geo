@@ -3,7 +3,7 @@ module geometry_tests
 import os
 
 fn test_help() {
-	result := os.execute_or_panic('v run . --help')
+	result := os.execute_or_panic('${@VEXE} run . --help')
 
 	output_search_terms := [
 		'Usage',
