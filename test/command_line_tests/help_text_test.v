@@ -1,7 +1,7 @@
 import os
 
 fn test_help() {
-	result := os.execute_or_panic('${@VEXE} run . --help')
+	result := os.execute_or_panic('${os.quoted_path(@VEXE)} run . --help')
 
 	output_search_terms := [
 		'Usage',
