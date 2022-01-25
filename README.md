@@ -2,8 +2,8 @@
 
 A sample CLI tool made in V that prints geometric shapes to the screen.
 
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hungrybluedev/geo?sort=semver)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hungrybluedev/geo/CI)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hungrybluedev/geo?sort=semver)](https://github.com/hungrybluedev/geo/tags)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/hungrybluedev/geo/CI)](https://github.com/hungrybluedev/geo/actions)
 
 ## Motivation
 
