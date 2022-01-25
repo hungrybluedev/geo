@@ -1,5 +1,3 @@
-module geometry_tests
-
 import os
 
 struct RunConfig {
@@ -47,7 +45,7 @@ const (
 )
 
 fn test_all_options() {
-	for case in geometry_tests.all_options_test_cases {
+	for case in all_options_test_cases {
 		result := os.execute_or_panic('${@VEXE} run . --shape $case.shape --size $case.size --symbol "$case.symbol"')
 
 		assert result.exit_code == 0
@@ -56,7 +54,7 @@ fn test_all_options() {
 }
 
 fn test_shapes_only() {
-	for case in geometry_tests.shape_only_test_cases {
+	for case in shape_only_test_cases {
 		result := os.execute_or_panic('${@VEXE} run . --shape $case.shape')
 
 		assert result.exit_code == 0

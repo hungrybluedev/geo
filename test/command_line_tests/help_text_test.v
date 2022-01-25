@@ -1,5 +1,3 @@
-module geometry_tests
-
 import os
 
 fn test_help() {
