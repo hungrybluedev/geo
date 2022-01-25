@@ -47,7 +47,7 @@ const (
 )
 
 fn split_into_lines(output string) []string {
-	return output.split_any('\n\r').filter(it != '')
+	return output.split_into_lines()
 }
 
 fn test_all_options() {
