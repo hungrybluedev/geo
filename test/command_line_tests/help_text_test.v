@@ -18,7 +18,6 @@ fn test_help() {
 		]
 
 		assert result.exit_code == 0
-		assert result.output.contains('Usage')
 		for term in output_search_terms {
 			assert result.output.contains(term)
 		}
