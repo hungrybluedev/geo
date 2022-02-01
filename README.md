@@ -7,6 +7,9 @@ A sample CLI tool made in V that prints geometric shapes to the screen.
 
 ## Motivation
 
+> 👉 Accompanying blog post:
+[The Complete Beginner’s Guide to CLI Apps in V](https://blog.vlang.io/the-complete-beginners-guide-to-cli-apps-in-v/).
+
 This project is meant to be a demonstration showcasing how
 easy it is to make a good CLI application with V. There is
 also an example to how to effectively structure a V
@@ -14,9 +17,12 @@ project with modules and conduct unit tests.
 
 ## Prerequisites
 
-Instructions for installing V can be found
-[here](https://github.com/vlang/v/blob/master/doc/docs.md#install-from-source)
+Instructions for installing the V language can be found
+[here](https://github.com/vlang/v/blob/master/doc/docs.md#install-from-source).
+For a brief introduction to V, refer the article:
+[Getting Started with V](https://blog.vlang.io/getting-started-with-v/).
 
+Make sure to do `v up` to download and update to the latest version of V.
 ## Usage
 
 You can use `v run . [OPTIONS]` to run the tool while
@@ -52,6 +58,14 @@ v test .
 ## License
 
 This work is licensed under the MIT license, see [LICENSE](/LICENSE) for more details.
+
+## Mirrors
+
+This project is hosted on GitHub:
+[hungrybluedev/geo](https://github.com/hungrybluedev/geo)
+
+As a backup, this repository is also available on Codeberg:
+[hungrybluedev/geo](https://codeberg.org/hungrybluedev/geo)
 
 ## Contributors
 
