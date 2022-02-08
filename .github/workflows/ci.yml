@@ -23,24 +23,21 @@ jobs:
       - name: Checkout Latest V
         uses: actions/checkout@v2
         with:
-          repository: vlang/v
+          repository: hungrybluedev/v
 
       - name: Build V on Windows
         if: ${{ matrix.os.name == 'windows-latest' }}
-        shell: pwsh
-        # Note 1: See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
-        # for more information on how to add a location to PATH
-        # Note 2: Chocolatey comes preinstalled so we can use refreshenv.
         run: |
           .\make.bat
-          echo $pwd | Out-File -FilePath $env:GITHUB_PATH -Append
-          refreshenv
 
       - name: Build V on Ubuntu, MacOS
         if: ${{ matrix.os.name != 'windows-latest' }}
         run: |
           make
-          sudo ./v symlink
+
+      - name: Symlink V and add it to path
+        run: |
+          ./v symlink -githubci
 
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v2
