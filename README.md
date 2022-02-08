@@ -7,8 +7,9 @@ A sample CLI tool made in V that prints geometric shapes to the screen.
 
 ## Motivation
 
-> 👉 Accompanying blog post:
-[The Complete Beginner’s Guide to CLI Apps in V](https://blog.vlang.io/the-complete-beginners-guide-to-cli-apps-in-v/).
+> 👉 Accompanying blog posts:
+> 1. [The Complete Beginner’s Guide to CLI Apps in V](https://blog.vlang.io/the-complete-beginners-guide-to-cli-apps-in-v/)
+> 2. [Elevate Your V Project With Unit Tests](https://blog.vlang.io/elevate-your-v-project-with-unit-tests/)
 
 This project is meant to be a demonstration showcasing how
 easy it is to make a good CLI application with V. There is
@@ -32,7 +33,7 @@ To get started, try `./geo --help`. It will print the
 following usage guide:
 
 ```
-geo 0.1.x
+geo 0.2.x
 -----------------------------------------------
 Usage: geo [options] [ARGS]
 
