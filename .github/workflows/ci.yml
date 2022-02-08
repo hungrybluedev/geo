@@ -11,29 +11,21 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-latest
-          - macos-latest
-          - windows-latest
-    runs-on: ${{ matrix.os }}
+          - name: ubuntu-latest
+            make: make
+          - name: macos-latest
+            make: make
+          - name: windows-latest
+            make: make.bat
+    runs-on: ${{ matrix.os.name }}
 
     steps:
-      - name: Clone Latest V
+      - name: Build V and symlink
         run: |
-          git clone https://github.com/vlang/v.git --depth 1 ../v
-
-      - name: Build V on Windows
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: |
-          ..\v\make.bat
-
-      - name: Build V on Ubuntu, MacOS
-        if: ${{ matrix.os != 'windows-latest' }}
-        run: |
-          ../v/make
-
-      - name: Symlink V and add it to path
-        run: |
-          cd ../v
+          cd ..
+          git clone https://github.com/vlang/v.git --depth 1 v
+          cd v
+          ${{ matrix.os.make }}
           ./v symlink -githubci
 
       - name: Checkout ${{ github.event.repository.name }}
