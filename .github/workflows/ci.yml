@@ -29,7 +29,12 @@ jobs:
         if: ${{ matrix.os.name == 'windows-latest' }}
         run: |
           .\make.bat
-          .\v.exe symlink
+
+      - name: Add V executable to path
+        if: ${{ matrix.os.name == 'windows-latest' }}
+        shell: pwsh
+        run: |
+          echo $pwd | Out-File -FilePath $env:GITHUB_PATH -Append
           refreshenv
 
       - name: Build V on Ubuntu, MacOS
