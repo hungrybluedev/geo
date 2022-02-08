@@ -16,7 +16,7 @@ jobs:
           - name: macos-latest
             vexe: v
           - name: windows-latest
-            vexe: .\v.exe
+            vexe: v.exe
     runs-on: ${{ matrix.os.name }}
 
     steps:
@@ -29,6 +29,8 @@ jobs:
         if: ${{ matrix.os.name == 'windows-latest' }}
         run: |
           .\make.bat
+          .\v.exe symlink
+          refreshenv
 
       - name: Build V on Ubuntu, MacOS
         if: ${{ matrix.os.name != 'windows-latest' }}
@@ -53,4 +55,4 @@ jobs:
       - name: Run Tests
         run: |
           cd ${{ github.event.repository.name }}
-          ../${{ matrix.os.vexe }} test .
+          ${{ matrix.os.vexe }} test .
