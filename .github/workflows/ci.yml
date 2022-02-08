@@ -23,7 +23,7 @@ jobs:
       - name: Build V and symlink
         run: |
           cd ..
-          git clone https://github.com/vlang/v.git --depth 1 v
+          git clone https://github.com/hungrybluedev/v.git --depth 1 v
           cd v
           ${{ matrix.os.make }}
           ./v symlink -githubci
