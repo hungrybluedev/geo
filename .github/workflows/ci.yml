@@ -11,53 +11,45 @@ jobs:
     strategy:
       matrix:
         os:
-          - name: ubuntu-latest
-            vexe: v
-          - name: macos-latest
-            vexe: v
-          - name: windows-latest
-            vexe: v.exe
-    runs-on: ${{ matrix.os.name }}
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout Latest V
         uses: actions/checkout@v2
         with:
           repository: hungrybluedev/v
-          path: v
+          path: ../v
 
       - name: Build V on Windows
-        if: ${{ matrix.os.name == 'windows-latest' }}
+        if: ${{ matrix.os == 'windows-latest' }}
         run: |
-          cd v
-          .\make.bat
+          ..\v\make.bat
 
       - name: Build V on Ubuntu, MacOS
-        if: ${{ matrix.os.name != 'windows-latest' }}
+        if: ${{ matrix.os != 'windows-latest' }}
         run: |
-          cd v
-          make
+          ../v/make
 
       - name: Symlink V and add it to path
         run: |
-          cd v
+          cd ../v
           ./v symlink -githubci
 
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v2
-        with:
-          path: ${{ github.event.repository.name }}
 
       - name: Check if code is formatted
         run: |
-          ${{ matrix.os.vexe }} fmt -diff ${{ github.event.repository.name }}
-          ${{ matrix.os.vexe }} fmt -verify ${{ github.event.repository.name }}
+          v fmt -diff .
+          v fmt -verify .
 
       - name: Build ${{ github.event.repository.name }}
         run: |
-          ${{ matrix.os.vexe }} -prod ${{ github.event.repository.name }}
+          v -prod .
 
       - name: Run Tests
         run: |
-          cd ${{ github.event.repository.name }}
-          ${{ matrix.os.vexe }} test .
+          v test .
