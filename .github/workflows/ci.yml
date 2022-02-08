@@ -42,4 +42,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          JBOBS=1 v test .
+          VJOBS=1 v test .
