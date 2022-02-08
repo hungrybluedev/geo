@@ -26,27 +26,22 @@ jobs:
           repository: hungrybluedev/v
           path: v
 
-      - name: Move into V's directory
-        run: |
-          cd v
-
       - name: Build V on Windows
         if: ${{ matrix.os.name == 'windows-latest' }}
         run: |
+          cd v
           .\make.bat
 
       - name: Build V on Ubuntu, MacOS
         if: ${{ matrix.os.name != 'windows-latest' }}
         run: |
+          cd v
           make
 
       - name: Symlink V and add it to path
         run: |
+          cd v
           ./v symlink -githubci
-
-      - name: Move out of V's directory
-        run: |
-          cd ..
 
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v2
