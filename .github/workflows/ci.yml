@@ -42,4 +42,6 @@ jobs:
 
       - name: Run Tests
         run: |
-          VJOBS=1 v test .
+          v test .
+        env:
+          VJOBS: 1
