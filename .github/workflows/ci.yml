@@ -27,13 +27,12 @@ jobs:
 
       - name: Build V on Windows
         if: ${{ matrix.os.name == 'windows-latest' }}
+        shell: pwsh
+        # Note 1: See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#environment-files
+        # for more information on how to add a location to PATH
+        # Note 2: Chocolatey comes preinstalled so we can use refreshenv.
         run: |
           .\make.bat
-
-      - name: Add V executable to path
-        if: ${{ matrix.os.name == 'windows-latest' }}
-        shell: pwsh
-        run: |
           echo $pwd | Out-File -FilePath $env:GITHUB_PATH -Append
           refreshenv
 
@@ -46,18 +45,18 @@ jobs:
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v2
         with:
-          path: ${{ github.event.repository.name }}
+          path: cloned-${{ github.event.repository.name }}
 
       - name: Check if code is formatted
         run: |
-          ${{ matrix.os.vexe }} fmt -diff ${{ github.event.repository.name }}
-          ${{ matrix.os.vexe }} fmt -verify ${{ github.event.repository.name }}
+          ${{ matrix.os.vexe }} fmt -diff cloned-${{ github.event.repository.name }}
+          ${{ matrix.os.vexe }} fmt -verify cloned-${{ github.event.repository.name }}
 
       - name: Build ${{ github.event.repository.name }}
         run: |
-          ${{ matrix.os.vexe }} -prod ${{ github.event.repository.name }}
+          ${{ matrix.os.vexe }} -prod cloned-${{ github.event.repository.name }}
 
       - name: Run Tests
         run: |
-          cd ${{ github.event.repository.name }}
+          cd cloned-${{ github.event.repository.name }}
           ${{ matrix.os.vexe }} test .
