@@ -20,13 +20,10 @@ jobs:
     runs-on: ${{ matrix.os.name }}
 
     steps:
-      - name: Build V and symlink
-        run: |
-          cd ..
-          git clone https://github.com/vlang/v.git --depth 1 v
-          cd v
-          ${{ matrix.os.make }}
-          ./v symlink -githubci
+      - name: Install V
+        uses: vlang/setup-v@v1
+        with:
+          check-latest: true
 
       - name: Checkout ${{ github.event.repository.name }}
         uses: actions/checkout@v2
