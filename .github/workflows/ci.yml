@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -28,11 +28,9 @@ jobs:
           v fmt -verify .
 
       - name: Build ${{ github.event.repository.name }}
-        run: |
-          v -prod .
+        run: v .
 
       - name: Run Tests
-        run: |
-          v test .
+        run: v test .
         env:
           VJOBS: 1
