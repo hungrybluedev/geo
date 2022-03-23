@@ -10,6 +10,7 @@ A sample CLI tool made in V that prints geometric shapes to the screen.
 > 👉 Accompanying blog posts:
 > 1. [The Complete Beginner’s Guide to CLI Apps in V](https://blog.vlang.io/the-complete-beginners-guide-to-cli-apps-in-v/)
 > 2. [Elevate Your V Project With Unit Tests](https://blog.vlang.io/elevate-your-v-project-with-unit-tests/)
+> 3. [Setting Up GitHub Actions for V](https://blog.vlang.io/setting-up-github-actions-for-v/)
 
 This project is meant to be a demonstration showcasing how
 easy it is to make a good CLI application with V. There is
