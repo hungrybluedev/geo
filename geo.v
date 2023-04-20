@@ -20,10 +20,10 @@ fn main() {
 		`*`
 	}
 
-	additional_args := fp.finalize() ?
+	additional_args := fp.finalize()!
 
 	if additional_args.len > 0 {
-		println('Unprocessed arguments:\n$additional_args.join_lines()')
+		println('Unprocessed arguments:\n${additional_args.join_lines()}')
 	}
 
 	if size <= 0 {
@@ -32,7 +32,7 @@ fn main() {
 	}
 
 	if shape !in geometry.allowed_shapes && shape != 'none' {
-		println('Invalid shape: $shape')
+		println('Invalid shape: ${shape}')
 		println(fp.usage())
 		exit(1)
 	}
@@ -49,7 +49,7 @@ fn get_shape_input() geometry.GeometricShapeKind {
 		input_string := (os.input_opt('Enter a shape: ') or { 'none' }).to_lower()
 
 		if input_string == 'none' || input_string !in geometry.allowed_shapes {
-			println('Invalid shape: $input_string')
+			println('Invalid shape: ${input_string}')
 			println('Available options are: ${geometry.allowed_shapes.join(', ')}')
 			continue
 		}
