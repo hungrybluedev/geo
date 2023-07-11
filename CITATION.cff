@@ -1,0 +1,13 @@
+abstract: A sample CLI tool made in V that prints geometric shapes to the screen.
+authors:
+  - alias: hungrybluedev
+    family-names: Haldar
+    given-names: Subhomoy
+cff-version: 1.2.0
+date-released: 2023-04-20
+license: MIT
+message: Please cite this software using these information.
+repository-code: https://github.com/hungrybluedev/geo
+title: geo
+url: https://github.com/hungrybluedev/geo
+version: 0.2.4
