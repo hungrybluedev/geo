@@ -1,4 +1,5 @@
 import os
+import rand
 
 struct RunConfig {
 	shape  string
@@ -47,14 +48,14 @@ const (
 fn test_all() {
 	// Test all options
 	for case in all_options_test_cases {
-		result := os.execute_or_panic('${os.quoted_path(@VEXE)} run . --shape ${case.shape} --size ${case.size} --symbol "${case.symbol}"')
+		result := os.execute_or_panic('${os.quoted_path(@VEXE)} -o ${rand.ulid()} run . --shape ${case.shape} --size ${case.size} --symbol "${case.symbol}"')
 
 		assert result.exit_code == 0
 		assert result.output.split_into_lines() == case.output
 	}
 	// Test shapes only
 	for case in shape_only_test_cases {
-		result := os.execute_or_panic('${os.quoted_path(@VEXE)} run . --shape ${case.shape}')
+		result := os.execute_or_panic('${os.quoted_path(@VEXE)} -o ${rand.ulid()} run . --shape ${case.shape}')
 
 		assert result.exit_code == 0
 		assert result.output.split_into_lines() == case.output

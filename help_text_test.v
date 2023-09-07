@@ -1,4 +1,5 @@
 import os
+import rand
 
 const (
 	output_search_terms = [
@@ -17,7 +18,7 @@ fn test_help() {
 	flags := ['--help', '-h']
 
 	for flag in flags {
-		result := os.execute_or_panic('${os.quoted_path(@VEXE)} run . ${flag}')
+		result := os.execute_or_panic('${os.quoted_path(@VEXE)} -o ${rand.ulid()} run . ${flag}')
 
 		assert result.exit_code == 0
 		for term in output_search_terms {
