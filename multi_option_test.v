@@ -8,42 +8,40 @@ struct RunConfig {
 	output []string
 }
 
-const (
-	all_options_test_cases = [
-		RunConfig{
-			shape: 'square'
-			size: 5
-			symbol: '|'
-			output: ['|||||', '|||||', '|||||', '|||||', '|||||']
-		},
-		RunConfig{
-			shape: 'pyramid'
-			size: 3
-			symbol: '^'
-			output: ['  ^', ' ^^^', '^^^^^']
-		},
-		RunConfig{
-			shape: 'diamond'
-			size: 4
-			symbol: '*'
-			output: ['   *', '  ***', ' *****', '*******', ' *****', '  ***', '   *']
-		},
-	]
-	shape_only_test_cases = [
-		RunConfig{
-			shape: 'square'
-			output: ['*****', '*****', '*****', '*****', '*****']
-		},
-		RunConfig{
-			shape: 'pyramid'
-			output: ['    *', '   ***', '  *****', ' *******', '*********']
-		},
-		RunConfig{
-			shape: 'left-triangle'
-			output: ['*', '**', '***', '****', '*****']
-		},
-	]
-)
+const all_options_test_cases = [
+	RunConfig{
+		shape: 'square'
+		size: 5
+		symbol: '|'
+		output: ['|||||', '|||||', '|||||', '|||||', '|||||']
+	},
+	RunConfig{
+		shape: 'pyramid'
+		size: 3
+		symbol: '^'
+		output: ['  ^', ' ^^^', '^^^^^']
+	},
+	RunConfig{
+		shape: 'diamond'
+		size: 4
+		symbol: '*'
+		output: ['   *', '  ***', ' *****', '*******', ' *****', '  ***', '   *']
+	},
+]
+const shape_only_test_cases = [
+	RunConfig{
+		shape: 'square'
+		output: ['*****', '*****', '*****', '*****', '*****']
+	},
+	RunConfig{
+		shape: 'pyramid'
+		output: ['    *', '   ***', '  *****', ' *******', '*********']
+	},
+	RunConfig{
+		shape: 'left-triangle'
+		output: ['*', '**', '***', '****', '*****']
+	},
+]
 
 fn test_all() {
 	// Test all options

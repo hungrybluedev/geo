@@ -1,18 +1,16 @@
 import os
 import rand
 
-const (
-	output_search_terms = [
-		'Usage',
-		'Description',
-		'Options',
-		'-p, --shape <string>',
-		'-z, --size <int>',
-		'-m, --symbol <string>',
-		'-h, --help',
-		'--version',
-	]
-)
+const output_search_terms = [
+	'Usage',
+	'Description',
+	'Options',
+	'-p, --shape <string>',
+	'-z, --size <int>',
+	'-m, --symbol <string>',
+	'-h, --help',
+	'--version',
+]
 
 fn test_help() {
 	flags := ['--help', '-h']
